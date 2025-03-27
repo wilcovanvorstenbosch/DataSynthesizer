@@ -172,7 +172,6 @@ class DataDescriber:
                                                             attribute_to_is_candidate_key,
                                                             categorical_attribute_domain_file,
                                                             numerical_attribute_ranges,
-                                                            root,
                                                             seed)
         self.df_encoded = self.encode_dataset_into_binning_indices()
         if self.df_encoded.shape[1] < 2:
