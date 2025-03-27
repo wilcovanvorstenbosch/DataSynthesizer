@@ -68,18 +68,13 @@ class DataDescriber:
                                         attribute_to_datatype: Dict[str, DataType] = None,
                                         attribute_to_is_categorical: Dict[str, bool] = None,
                                         attribute_to_is_candidate_key: Dict[str, bool] = None,
-                                        categorical_attribute_domain_file: str = None,
+                                        categorical_attribute_to_domain: Dict[str, bool] = None,
                                         numerical_attribute_ranges: Dict[str, List] = None,
                                         seed=0):
         attribute_to_datatype = attribute_to_datatype or {}
         attribute_to_is_categorical = attribute_to_is_categorical or {}
         attribute_to_is_candidate_key = attribute_to_is_candidate_key or {}
         numerical_attribute_ranges = numerical_attribute_ranges or {}
-
-        if categorical_attribute_domain_file:
-            categorical_attribute_to_domain = utils.read_json_file(categorical_attribute_domain_file)
-        else:
-            categorical_attribute_to_domain = {}
 
         utils.set_random_seed(seed)
         self.attr_to_datatype = {attr: DataType(datatype) for attr, datatype in attribute_to_datatype.items()}
@@ -110,14 +105,14 @@ class DataDescriber:
                                                        attribute_to_datatype: Dict[str, DataType] = None,
                                                        attribute_to_is_categorical: Dict[str, bool] = None,
                                                        attribute_to_is_candidate_key: Dict[str, bool] = None,
-                                                       categorical_attribute_domain_file: str = None,
+                                                       categorical_attribute_to_domain: Dict[str, bool] = None,
                                                        numerical_attribute_ranges: Dict[str, List] = None,
                                                        seed=0):
         self.describe_dataset_in_random_mode(dataset_file,
                                              attribute_to_datatype,
                                              attribute_to_is_categorical,
                                              attribute_to_is_candidate_key,
-                                             categorical_attribute_domain_file,
+                                             categorical_attribute_to_domain,
                                              numerical_attribute_ranges,
                                              seed=seed)
 
@@ -137,7 +132,7 @@ class DataDescriber:
                                                       attribute_to_datatype: Dict[str, DataType] = None,
                                                       attribute_to_is_categorical: Dict[str, bool] = None,
                                                       attribute_to_is_candidate_key: Dict[str, bool] = None,
-                                                      categorical_attribute_domain_file: str = None,
+                                                      categorical_attribute_to_domain: Dict[str, bool] = None,
                                                       numerical_attribute_ranges: Dict[str, List] = None,
                                                       root: str = None,
                                                       seed=0):
@@ -170,7 +165,7 @@ class DataDescriber:
                                                             attribute_to_datatype,
                                                             attribute_to_is_categorical,
                                                             attribute_to_is_candidate_key,
-                                                            categorical_attribute_domain_file,
+                                                            categorical_attribute_to_domain,
                                                             numerical_attribute_ranges,
                                                             seed)
         self.df_encoded = self.encode_dataset_into_binning_indices()
