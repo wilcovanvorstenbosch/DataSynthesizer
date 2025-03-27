@@ -120,7 +120,7 @@ def worker(paras):
     return parents_pair_list, mutual_info_list
 
 
-def greedy_bayes(dataset: DataFrame, k: int, epsilon: float, seed=0):
+def greedy_bayes(dataset: DataFrame, k: int, epsilon: float, seed=0, root: str):
     """Construct a Bayesian Network (BN) using greedy algorithm.
 
     Parameters
@@ -143,7 +143,11 @@ def greedy_bayes(dataset: DataFrame, k: int, epsilon: float, seed=0):
     attr_to_is_binary = {attr: dataset[attr].unique().size <= 2 for attr in dataset}
 
     print('================ Constructing Bayesian Network (BN) ================')
-    root_attribute = random.choice(dataset.columns)
+    if root:
+        root_attribute = root
+    else:
+        root_attribute = random.choice(dataset.columns)
+        
     V = [root_attribute]
     rest_attributes = list(dataset.columns)
     rest_attributes.remove(root_attribute)
