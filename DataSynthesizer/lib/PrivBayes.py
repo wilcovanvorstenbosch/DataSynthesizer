@@ -120,7 +120,7 @@ def worker(paras):
     return parents_pair_list, mutual_info_list
 
 
-def greedy_bayesgreedy_bayes(dataset: DataFrame, k: int, epsilon: float, root: str, seed=0):
+def greedy_bayes(dataset: DataFrame, k: int, epsilon: float, root: str, seed=0):
     """Construct a Bayesian Network (BN) using greedy algorithm.
 
     Parameters
